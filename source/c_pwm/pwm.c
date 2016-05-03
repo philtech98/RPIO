@@ -84,6 +84,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/mman.h>
+#include "mailbox.h"
 #include "pwm.h"
 
 // 15 DMA channels are usable on the RPi (0..14)
@@ -373,7 +374,7 @@ mem_virt_to_phys(int channel, void *virt)
 static void *
 map_peripheral(uint32_t base, uint32_t len)
 {
-    int fd = open("/dev/mem", O_RDWR);
+    int fd = open("/dev/mem", O_RDWR|O_SYNC);
     void * vaddr;
 
     if (fd < 0) {
