@@ -159,7 +159,10 @@ MODEL_DATA = {
     'd': ('B', '2.0', 512, 'Egoman'),
     'e': ('B', '2.0', 512, 'Sony'),
     'f': ('B', '2.0', 512, 'Qisda'),
-    '10': ('B+', '1.0', 512, 'Sony')
+    '10': ('B+', '1.0', 512, 'Sony'),
+    'a01041': ('2B', '1.0', 1024, 'Sony'),
+    'a21041': ('2B', '1.0', 1024, 'EMBEST'),
+    'a02082': ('3B', '1.0', 1024, '?')
 }
 
 # List of valid bcm gpio ids for raspberry rev1, rev2 and rev3. Used for inspect-all.
