@@ -42,6 +42,8 @@ get_cpuinfo_revision(char *revision_hex)
     char buffer[1024];
     char hardware[1024];
     int  rpi_found = 0;
+	int  bcm2709 = 0;
+	int board_rev = 3;
 
     if ((fp = fopen("/proc/cpuinfo", "r")) == NULL)
         return -1;
@@ -52,9 +54,11 @@ get_cpuinfo_revision(char *revision_hex)
         if (strcmp(hardware, "BCM2708") == 0||
             strcmp(hardware, "BCM2709") == 0||
             strcmp(hardware, "BCM2835") == 0||
-            strcmp(hardware, "BCM2836") == 0
-           )
+            strcmp(hardware, "BCM2836") == 0)
             rpi_found = 1;
+
+        if (strcmp(hardware, "BCM2709") == 0)
+            bcm2709 = 1;
         sscanf(buffer, "Revision	: %s", revision_hex);
     }
     fclose(fp);
@@ -72,19 +76,20 @@ get_cpuinfo_revision(char *revision_hex)
 
     // Returns revision
     if ((strcmp(revision_hex, "0002") == 0) ||
-        (strcmp(revision_hex, "0003") == 0)) {
-        return 1;
-    } else if ((strcmp(revision_hex, "0010") == 0)) {
-    } else if (strcmp(revision_hex, "0010") == 0
-		 || strcmp(revision_hex, "a21041") == 0
-		 || strcmp(revision_hex, "a01041") == 0
-		 || strcmp(revision_hex, "a02082") == 0 ) {
-        // We'll call Model B+ (0010) rev3 or Pi 2
-        return 3;
-    } else {
-        // assume rev 2 (0004 0005 0006 ...)
-        return 2;
-    }
+        (strcmp(revision_hex, "0003") == 0))
+        board_rev = 1;
+    else if ((strcmp(revision_hex, "0004") == 0)
+        || (strcmp(revision_hex, "0005") == 0)
+        || (strcmp(revision_hex, "0006") == 0)
+        || (strcmp(revision_hex, "0007") == 0)
+        || (strcmp(revision_hex, "0008") == 0)
+        || (strcmp(revision_hex, "0009") == 0)
+        || (strcmp(revision_hex, "000d") == 0)
+        || (strcmp(revision_hex, "000e") == 0)
+        || (strcmp(revision_hex, "000f") == 0))
+        board_rev = 2;
+    else   // We'll call Model A+, B+, Pi2, Pi3 and Zero rev3
+        board_rev = 3;
 
-    return -1;
+    return (bcm2709 << 8) | board_rev;
 }

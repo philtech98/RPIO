@@ -84,7 +84,7 @@ setup(void)
         gpio_mem += PAGE_SIZE - ((uint32_t)gpio_mem % PAGE_SIZE);
 
     type = get_cpuinfo_revision(revision_hex);
-    if (type == 1)
+    if ((type & 0x100) == 0)
         peri_base = BCM2708_PERI_BASE;
     else
         peri_base = BCM2709_PERI_BASE;

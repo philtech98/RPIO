@@ -54,7 +54,7 @@ static PyObject *version;
 // eg. gpio_id = *(*pin_to_gpio_rev2 + board_pin_id);
 static const int pin_to_gpio_rev1[41] = {-1, -1, -1, 0, -1, 1, -1, 4, 14, -1, 15, 17, 18, 21, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 static const int pin_to_gpio_rev2[41] = {-1, -1, -1, 2, -1, 3, -1, 4, 14, -1, 15, 17, 18, 27, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-static const int pin_to_gpio_rev3[41] = {-1, -1, -1, 2, -1, 3, -1, 4, 14, -1, 15, 17, 18, 27, -1, 22, 23, -1, 24, 10, -1, 9, 24, 11, 7, -1, 7, -1, -1, 5, -1, 6, 12, 13, -1, 19, 16, 26, 20, -1, 21};
+static const int pin_to_gpio_rev3[41] = {-1, -1, -1, 2, -1, 3, -1, 4, 14, -1, 15, 17, 18, 27, -1, 22, 23, -1, 24, 10, -1, 9, 25, 11, 8, -1, 7, -1, -1, 5, -1, 6, 12, 13, -1, 19, 16, 26, 20, -1, 21};
 static const int (*pin_to_gpio)[41];
 
 // Board header info is shifted left 8 bits (leaves space for up to 255 channel ids per header)
@@ -519,7 +519,7 @@ PyMODINIT_FUNC init_GPIO(void)
 
     // detect board revision and set up accordingly
     cache_rpi_revision();
-    switch (revision_int) {
+    switch (revision_int & 0xff) {
     case 1:
         pin_to_gpio = &pin_to_gpio_rev1;
         gpio_to_pin = &gpio_to_pin_rev1;

@@ -118,12 +118,12 @@ class TestSequenceFunctions(unittest.TestCase):
         logging.info("=== BCM AND BOARD NUMBERING TESTS ===")
 
         RPIO.setmode(RPIO.BCM)
-        if RPIO.sysinfo()[1] == 'B+' or RPIO.sysinfo()[1] == '2B' or RPIO.sysinfo()[1] == '3B':
-            pins = RPIO.GPIO_LIST_R3
-        elif RPIO.RPI_REVISION == 1:
+        if RPIO.RPI_REVISION == 1:
             pins = RPIO.GPIO_LIST_R1
-        else:
+        elif RPIO.RPI_REVISION == 2:
             pins = RPIO.GPIO_LIST_R2
+        else:
+            pins = RPIO.GPIO_LIST_R3
         logging.info("testing bcm gpio numbering: %s", pins)
         for pin in pins:
             gpio_id = RPIO.channel_to_gpio(pin)
