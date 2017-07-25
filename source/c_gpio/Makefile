@@ -1,4 +1,4 @@
-all: gpio2.6 gpio2.7 gpio3.2
+all: gpio2.6 gpio2.7 gpio3.2 gpio3.3 gpio3.4
 
 gpio2.6:
 	mkdir -p build
@@ -21,5 +21,33 @@ gpio3.2:
 	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.2mu -c cpuinfo.c -o build/cpuinfo.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/py_gpio.o build/c_gpio.o build/cpuinfo.o -o build/_GPIO.so
 
+gpio3.3:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c py_gpio.c -o build/py_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c c_gpio.c -o build/c_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c cpuinfo.c -o build/cpuinfo.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/py_gpio.o build/c_gpio.o build/cpuinfo.o -o build/_GPIO.so
+	
+gpio3.4:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c py_gpio.c -o build/py_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c c_gpio.c -o build/c_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c cpuinfo.c -o build/cpuinfo.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/py_gpio.o build/c_gpio.o build/cpuinfo.o -o build/_GPIO.so
+
+gpio3.5:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c py_gpio.c -o build/py_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c c_gpio.c -o build/c_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c cpuinfo.c -o build/cpuinfo.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/py_gpio.o build/c_gpio.o build/cpuinfo.o -o build/_GPIO.so
+	
+gpio3.6:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c py_gpio.c -o build/py_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c c_gpio.c -o build/c_gpio.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c cpuinfo.c -o build/cpuinfo.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/py_gpio.o build/c_gpio.o build/cpuinfo.o -o build/_GPIO.so
+	
 clean:
 	rm -rf build

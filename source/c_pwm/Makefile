@@ -26,3 +26,35 @@ py3.2:
 	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.2mu -c pwm_py.c -o build/pwm_py.o
 	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/mailbox.o build/pwm.o build/pwm_py.o -o _PWM.so
 	rm -rf build
+
+py3.3:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c mailbox.c -o build/mailbox.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c pwm.c -o build/pwm.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.3mu -c pwm_py.c -o build/pwm_py.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/mailbox.o build/pwm.o build/pwm_py.o -o _PWM.so
+	rm -rf build
+	
+py3.4:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c mailbox.c -o build/mailbox.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c pwm.c -o build/pwm.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.4mu -c pwm_py.c -o build/pwm_py.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/mailbox.o build/pwm.o build/pwm_py.o -o _PWM.so
+	rm -rf build
+	
+py3.5:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c mailbox.c -o build/mailbox.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c pwm.c -o build/pwm.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.5mu -c pwm_py.c -o build/pwm_py.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/mailbox.o build/pwm.o build/pwm_py.o -o _PWM.so
+	rm -rf build
+	
+py3.6:
+	mkdir -p build
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c mailbox.c -o build/mailbox.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c pwm.c -o build/pwm.o
+	gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python3.6mu -c pwm_py.c -o build/pwm_py.o
+	gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/mailbox.o build/pwm.o build/pwm_py.o -o _PWM.so
+	rm -rf build
