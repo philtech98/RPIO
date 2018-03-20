@@ -24,6 +24,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 #include "cpuinfo.h"
 
 // Writes the hex revision str into the argument and returns:
